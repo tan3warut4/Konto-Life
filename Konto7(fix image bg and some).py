@@ -10,12 +10,13 @@ class Main():
           #--Background--#
           photo = PhotoImage(file= 'bg1.gif')
           Label(self.main, image = photo).pack()
-          #--Label Image--#
-          photo2 = PhotoImage(file= 'img01.gif')
-          Label(self.main, image = photo2, bg = '#391d10').place(x=100, y=60)
 
-          Button(self.main, text='New User', command = self.new, font=("Helvetica", 15)).place(x=140,y=200)
-          Button(self.main, text='Old User', command = self.old, font=("Helvetica", 15)).place(x=280,y=200)
+          #--Button-Image--#
+          bt_img = PhotoImage(file= 'button01.gif')
+          bt_img2 = PhotoImage(file= 'button02.gif')
+
+          Button(self.main, image = bt_img, bg = '#29a3a2', relief= 'flat', command = self.new).place(x=100,y=200)
+          Button(self.main, image = bt_img2, bg = '#29a3a2', relief= 'flat', command = self.old).place(x=280,y=200)
 
           self.main.mainloop()
      def new(self):
