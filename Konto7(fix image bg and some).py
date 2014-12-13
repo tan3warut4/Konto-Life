@@ -7,10 +7,12 @@ class Main():
           self.main.geometry("500x400+500+100")
           self.main.title("Main")
           self.main.resizable(width=FALSE, height=FALSE)
+          #--Background--#
           photo = PhotoImage(file= 'bg1.gif')
           Label(self.main, image = photo).pack()
-
-          Label(self.main, text = 'Konto Acount Plan', font=("Helvetica", 30)).place(x=100, y=60)
+          #--Label Image--#
+          photo2 = PhotoImage(file= 'img01.gif')
+          Label(self.main, image = photo2, bg = '#391d10').place(x=100, y=60)
 
           Button(self.main, text='New User', command = self.new, font=("Helvetica", 15)).place(x=140,y=200)
           Button(self.main, text='Old User', command = self.old, font=("Helvetica", 15)).place(x=280,y=200)
