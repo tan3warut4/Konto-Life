@@ -48,65 +48,86 @@ class Main():
           self.main = Tk()
           self.main.geometry("500x400+500+100")
           self.main.title("New")
-          photo = PhotoImage(file= 'bg1.gif')
+          
+          #--Background--#
+          photo = PhotoImage(file= 'bg3.gif')
           Label(self.main, image = photo).pack()
+
+          #--Button-Image--#
+          bt_img3 = PhotoImage(file= 'go_bt.gif')
+          
           self.main.resizable(width=FALSE, height=FALSE)
-          Label(self.main, text = 'Hello!', font=("Helvetica", 30)).place(x=198, y=30)
-          Label(self.main, text = 'Let me know your salary', font=("Helvetica", 25)).place(x=80, y=90)
           self.x = Entry(self.main)
-          self.x.place(x=180, y=150)
-          Button(self.main, text='Go', command = self.getsave, font=("Helvetica", 18)).place(x=215, y = 200)
+          self.x.place(x=180, y=160)
+          Button(self.main, image = bt_img3, bg = '#29a3a2', relief= 'flat', command = self.getsave).place(x=215, y=200)
           self.main.mainloop()
+          
      def getsave(self):
           self.slary = self.x.get()
           self.main.destroy()
           self.save()
+          
      def save(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
-          photo = PhotoImage(file= 'bg1.gif')
+          
+          #--Background--#
+          photo = PhotoImage(file= 'bg4.gif')
           Label(self.main, image = photo).pack()
+
+          #--Button-Image--#
+          bt_img3 = PhotoImage(file= 'go_bt.gif')
+          
           self.main.title("New")
           self.main.resizable(width=FALSE, height=FALSE)
-          Label(self.main, text = 'In the end of the month ', font=("Helvetica", 30)).place(x=60, y=30)
-          Label(self.main, text = 'You want to safe', font=("Helvetica", 30)).place(x=110, y=90)
           self.x = Entry(self.main)
           self.x.place(x=180, y=150)
-          Button(self.main, text='Go next', command = self.proceed, font=("Helvetica", 18)).place(x=190, y = 200)
+          Button(self.main, image = bt_img3, bg = '#29a3a2', relief= 'flat', command = self.proceed).place(x=215, y=200)
           self.main.mainloop()
 
      def proceed(self):
           self.value = self.x.get()
           self.main.destroy()
           self.proceed2()
+          
      def proceed2(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
-          photo = PhotoImage(file= 'bg1.gif')
+          
+          #--Background--#
+          photo = PhotoImage(file= 'bg5.gif')
           Label(self.main, image = photo).pack()
+          
           self.main.title("New")
           self.main.resizable(width=FALSE, height=FALSE)
-          Label(self.main, text = 'Let me Proceed ', font=("Helvetica", 40)).place(x=60, y=50)
           self.x = Entry(self.main)
           self.x.place(x=180 , y=150)
           Button(self.main, text='Go next', command = self.resultuse, font=("Helvetica", 18)).place(x=190, y = 200)
           self.main.mainloop()
+          
      def resultuse(self):
           self.value = self.x.get()
           self.main.destroy()
           self.run_resultuse()
+          
      def run_resultuse(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
-          photo = PhotoImage(file= 'bg1.gif')
+          
+          #--Background--#
+          photo = PhotoImage(file= 'bg6.gif')
           Label(self.main, image = photo).pack()
+          
+          #--Button-Image--#
+          bt_img4 = PhotoImage(file= 'button03.gif')
+          
           self.main.title("New")
           self.main.resizable(width=FALSE, height=FALSE)
-          Label(self.main, text = 'You need to Use', font=("Helvetica", 40)).place(x=50, y=50)
           self.x = Entry(self.main)
           self.x.place(x=180, y=150)
-          Button(self.main, text='Let start save monney', command = self.getold, font=("Helvetica", 15)).place(x=130, y = 200)
+          Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.getold).place(x=140, y=200)
           self.main.mainloop()
+          
      def getold(self):
           self.value = self.x.get()
           self.main.destroy()
