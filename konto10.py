@@ -66,9 +66,8 @@ class Main():
           Button(self.main, image = bt_img3, bg = '#29a3a2', relief= 'flat', command = self.writename).place(x=215, y=200)
           self.main.mainloop()
      def writename(self):
-          f = open('data.txt', 'w')
-          f.write(str(self.x.get())+" ")
-          f.close()
+          f = open('data.txt', 'a+')
+          f.write(' ' + str(self.x.get()))
           self.main.destroy()
           self.slary()
 
@@ -114,7 +113,7 @@ class Main():
           self.main.mainloop()
 
      def proceed(self):
-          self.value = float(self.z.get())
+          f.write(str(self.z.get())+" ")
           self.main.destroy()
           self.run_resultuse()
           
