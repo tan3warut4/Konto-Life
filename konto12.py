@@ -30,13 +30,14 @@ def date():
     date_now = "%s %s %s" % (day, month, year)
     return date_now
 f = open('data.txt', 'a+')
+
 class Main():
      def __init__(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
           self.main.title("Main")
           self.main.resizable(width=FALSE, height=FALSE)
-          
+          self.lis_name = []
           #--Background--#
           photo = PhotoImage(file= 'bg1.gif')
           Label(self.main, image = photo).pack()
@@ -67,6 +68,7 @@ class Main():
           self.main.mainloop()
      def writename(self):
           f.write(str(self.x.get())+' ')
+          self.lis_name.append(str(self.x.get()))
           self.main.destroy()
           self.slary()
 
@@ -117,25 +119,6 @@ class Main():
           self.main.destroy()
           self.run_resultuse()
           
-     '''def proceed2(self):
-          self.main = Tk()
-          self.main.geometry("500x400+500+100")
-          
-          #--Background--#
-          photo = PhotoImage(file= 'bg5.gif')
-          Label(self.main, image = photo).pack()
-          
-          self.main.title("New")
-          self.main.resizable(width=FALSE, height=FALSE)
-          self.x = Entry(self.main)
-          self.x.place(x=180 , y=150)
-          Button(self.main, text='Go next', command = self.resultuse, font=("Helvetica", 18)).place(x=190, y = 200)
-          self.main.mainloop()
-          
-     def resultuse(self):
-          self.value = self.x.get()
-          self.main.destroy()
-          self.run_resultuse()'''
           
      def run_resultuse(self):
           self.main = Tk()
@@ -155,11 +138,21 @@ class Main():
           self.main.mainloop()
           
      def getold(self):
-          f.write(str(self.result) + "\n")
+          f.write(str(self.result)+' ')
+          f.write(str(int(self.slary - self.value)) + "\n")
           f.close()
           self.main.destroy()
           self.run_old()
-          
+     def var(self):
+         sent = str(self.variable.get())
+         f = open("data.txt", "r")
+         lines = f.read().split('\n')
+         #for i in xrange(len(lines)-1):
+         lines[i] = lines[i].split()
+         for i in xrange(len(lines)-1):
+             if lines[i][0] == sent:
+                 print lines[i]
+         f.close()
      def run_old(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
@@ -167,10 +160,27 @@ class Main():
           #Label(self.main, image = photo).pack()
           self.main.title("Old")
           self.main.resizable(width=FALSE, height=FALSE)
-          Label(self.main, text = 'Name  :' , font=("Helvetica", 30)).place(x=50, y=30)
+          self.variable = StringVar(self.main)
+          self.variable.set("NAME")
+          
+          #--Button-Image--#
+          bt_img4 = PhotoImage(file= 'go_bt.gif')
+          
+          f = open("data.txt", "r")
+          lines = f.read().split('\n')
+          for i in xrange(len(lines)):
+              lines[i] = lines[i].split()
+          f.close()
+          lis = []
+          for i in xrange(len(lines)-1):
+              lis.append(lines[i][0])
+          self.w = OptionMenu(self.main, self.variable, *tuple(lis)).pack()
+          Label(self.main, text = "NAME  :" , font=("Helvetica", 30)).place(x=50, y=30)
           Label(self.main, text = 'Day left  :' + str(remove()), font=("Helvetica", 30)).place(x=50, y=90)
           Label(self.main, text = 'Draft  :' , font=("Helvetica", 30)).place(x=50, y=140)
           Label(self.main, text = 'You use  :', font=("Helvetica", 30)).place(x=50, y=200)
+          Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.var).place(x=140, y=200)
           self.main.mainloop()
+
 
 Main()
