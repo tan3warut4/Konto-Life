@@ -1,13 +1,13 @@
 from Tkinter import *
 import sqlite3
 
+
 class Main():
      def __init__(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
           self.main.title("Main")
           self.main.resizable(width=FALSE, height=FALSE)
-          
           #--Background--#
           photo = PhotoImage(file= 'bg1.gif')
           Label(self.main, image = photo).pack()
@@ -15,7 +15,6 @@ class Main():
           #--Button-Image--#
           bt_img = PhotoImage(file= 'button01.gif')
           bt_img2 = PhotoImage(file= 'button02.gif')
-
           Button(self.main, image = bt_img, bg = '#29a3a2', relief= 'flat', command = self.new).place(x=100,y=200)
           Button(self.main, image = bt_img2, bg = '#29a3a2', relief= 'flat', command = self.old).place(x=280,y=200)
 
@@ -29,6 +28,8 @@ class Main():
           photo = PhotoImage(file= 'bg2.gif')
           Label(self.main, image = photo).pack()
 
+          #textbox#
+          self.box2.pack_start(self.combo)
           #--Button-Image--#
           bt_img3 = PhotoImage(file= 'go_bt.gif')
 

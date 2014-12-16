@@ -59,7 +59,7 @@ class Main():
           #--Button-Image--#
           bt_img3 = PhotoImage(file= 'go_bt.gif')
 
-          self.main.title("New")
+          self.main.title("Enter Name")
           self.main.resizable(width=FALSE, height=FALSE)
           self.x = Entry(self.main)
           self.x.place(x=180, y=150)
@@ -74,7 +74,7 @@ class Main():
      def slary(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
-          self.main.title("New")
+          self.main.title("Salary")
           
           #--Background--#
           photo = PhotoImage(file= 'bg7.gif')
@@ -105,7 +105,7 @@ class Main():
           #--Button-Image--#
           bt_img3 = PhotoImage(file= 'go_bt.gif')
           
-          self.main.title("New")
+          self.main.title("Save")
           self.main.resizable(width=FALSE, height=FALSE)
           self.z = Entry(self.main)
           self.z.place(x=180, y=150)
@@ -149,7 +149,7 @@ class Main():
           #--Button-Image--#
           bt_img4 = PhotoImage(file= 'button03.gif')
           
-          self.main.title("New")
+          self.main.title("You need to use")
           self.main.resizable(width=FALSE, height=FALSE)
           Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.getold).place(x=140, y=200)
           self.main.mainloop()
