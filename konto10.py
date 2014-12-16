@@ -63,11 +63,12 @@ class Main():
           self.main.resizable(width=FALSE, height=FALSE)
           self.x = Entry(self.main)
           self.x.place(x=180, y=150)
-          Button(self.main, image = bt_img3, bg = '#29a3a2', relief= 'flat', command = self.getslary).place(x=215, y=200)
+          Button(self.main, image = bt_img3, bg = '#29a3a2', relief= 'flat', command = self.writename).place(x=215, y=200)
           self.main.mainloop()
-          
-     def getslary(self):
-          self.name = self.x.get()
+     def writename(self):
+          f = open('data.txt', 'w')
+          f.write(str(self.x.get())+" ")
+          f.close()
           self.main.destroy()
           self.slary()
 
