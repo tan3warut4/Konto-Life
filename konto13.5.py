@@ -176,11 +176,10 @@ class Main():
           for i in xrange(len(lines)-1):
               lis.append(lines[i][0])
           self.w = OptionMenu(self.main, self.variable, *tuple(lis)).pack()
-          Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.var).place(x=10, y=70)
+          Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.var).place(x=90, y=10)
           Label(self.main, text = "NAME  :" , font=("Helvetica", 30)).place(x=50, y=30)
           Label(self.main, text = 'Day left  :' + str(remove()), font=("Helvetica", 30)).place(x=50, y=90)
-          Label(self.main, text = 'Money save  :'+ , font=("Helvetica", 30)).place(x=50, y=140)
-          Label(self.main, text = 'Draft  :'+ , font=("Helvetica", 30)).place(x=50, y=200)
+          Label(self.main, text = 'Money save  :', font=("Helvetica", 30)).place(x=50, y=140)
           Label(self.main, text = 'use : ', font=("Helvetica", 30)).place(x=50, y=250)
           self.main.mainloop()
 
