@@ -43,10 +43,11 @@ class Main():
           Label(self.main, image = photo).pack()
 
           #--Button-Image--#
-          bt_img = PhotoImage(file= 'start.gif')
+          bt_img = PhotoImage(file= 'button01.gif')
+          bt_img2 = PhotoImage(file= 'button02.gif')
 
-          Button(self.main, image = bt_img, bg = '#29a3a2', relief= 'flat', command = self.new).place(x=190,y=200)
-
+          Button(self.main, image = bt_img, bg = '#29a3a2', relief= 'flat', command = self.new).place(x=100,y=200)
+          Button(self.main, image = bt_img2, bg = '#29a3a2', relief= 'flat', command = self.old).place(x=280,y=200)
           self.main.mainloop()
      def new(self):
           self.main.destroy()
@@ -66,6 +67,9 @@ class Main():
           self.x.place(x=180, y=150)
           Button(self.main, image = bt_img3, bg = '#29a3a2', relief= 'flat', command = self.writename).place(x=215, y=200)
           self.main.mainloop()
+     def old(self):
+         self.main.destroy()
+         self.run_old()
      def writename(self):
           f.write(str(self.x.get())+' ')
           self.lis_name.append(str(self.x.get()))
@@ -143,26 +147,18 @@ class Main():
           f.close()
           self.main.destroy()
           self.run_old()
-     def var(self):
-         self.sent = str(self.variable.get())
-         f = open("data.txt", "r")
-         lines = f.read().split('\n')
-         for i in xrange(len(lines)-1):
-             lines[i] = lines[i].split()
-         for i in xrange(len(lines)-1):
-             if lines[i][0] == self.sent:
-                 self.save = lines[i][1]
-                 self.draft = lines[i][2]
-         f.close()
+          
      def run_old(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
-          #photo = PhotoImage(file= 'bg1.gif')
-           #Label(self.main, image = photo).pack()
-          self.main.title("Old")
+          self.main.title("Select Name")
           self.main.resizable(width=FALSE, height=FALSE)
           self.variable = StringVar(self.main)
           self.variable.set("NAME")
+
+          #--Background--#
+          photo = PhotoImage(file= 'name_bg.gif')
+          Label(self.main, image = photo).pack()
           
           #--Button-Image--#
           bt_img4 = PhotoImage(file= 'go_bt.gif')
@@ -175,13 +171,89 @@ class Main():
           lis = []
           for i in xrange(len(lines)-1):
               lis.append(lines[i][0])
-          self.w = OptionMenu(self.main, self.variable, *tuple(lis)).pack()
-          Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.var).place(x=10, y=70)
-          Label(self.main, text = "NAME  :" , font=("Helvetica", 30)).place(x=50, y=30)
-          Label(self.main, text = 'Day left  :' + str(remove()), font=("Helvetica", 30)).place(x=50, y=90)
-          Label(self.main, text = 'Money save  :'+ str(self.save), font=("Helvetica", 30)).place(x=50, y=140)
-          Label(self.main, text = 'Draft  :'+ str(self.draft), font=("Helvetica", 30)).place(x=50, y=200)
-          Label(self.main, text = 'use : ', font=("Helvetica", 30)).place(x=50, y=250)
+          self.w = OptionMenu(self.main, self.variable, *tuple(lis)).place(x=220, y=170)
+          Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.var).place(x=220, y=300)
           self.main.mainloop()
+          
+     def var(self):
+         self.sent = str(self.variable.get())
+         f = open("data.txt", "r")
+         lines = f.read().split('\n')
+         for i in xrange(len(lines)-1):
+             lines[i] = lines[i].split()
+         for i in xrange(len(lines)-1):
+             if lines[i][0] == self.sent:
+                 self.save = lines[i][1]
+                 self.draft = lines[i][2]
+                 self.left = lines[i][3]
+         f.close()
+         self.main.destroy()
+         self.run_last()
+
+     def run_last(self):
+         self.main = Tk()
+         self.main.geometry("500x400+500+100")
+         self.main.title("Last")
+         self.main.resizable(width=FALSE, height=FALSE)
+
+         #--Background--#
+         photo = PhotoImage(file= 'bg_account.gif')
+         Label(self.main, image = photo).pack()
+         
+         #--Button-Image--#
+         bt_img4 = PhotoImage(file= 'go_bt.gif')
+          
+         self.t = Entry(self.main)
+         self.t.place(x=310, y=310)
+         Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.get_use).place(x=420, y=340)
+         Label(self.main, text =  str(remove()), font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=100)
+         Label(self.main, text =  str(self.save) , font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=160)
+         Label(self.main, text =  str(self.draft) ,font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=230)
+         self.main.mainloop()
+         
+     def get_use(self):
+         self.got = self.t.get()
+         self.main.destroy()
+         self.use()
+
+     def use(self):
+         self.main = Tk()
+         self.main.geometry("500x400+500+100")
+         self.main.title("Last")
+         self.main.resizable(width=FALSE, height=FALSE)
+
+         #--Background--#
+         photo = PhotoImage(file= 'bg_next.gif')
+         Label(self.main, image = photo).pack()
+
+         #--Button-Image--#
+         bt_img5 = PhotoImage(file= 'bt_end.gif')
+
+         self.can = '%.2f' % ((float(self.left) - float(self.got))/(remove() - 1))
+         self.leftupdate = '%.2f' % (float(self.left) - float(self.got))
+         print self.left
+         print self.got
+         print self.leftupdate
+         Button(self.main, image = bt_img5, bg = '#29a3a2', relief= 'flat', command = self.get__init__).place(x=390, y=340)
+         Label(self.main, text = str(self.can), font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=190, y=170)
+
+         self.main.mainloop()
+     def get__init__(self):
+         f = open("data.txt", "r")
+         lines = f.read().split('\n')
+         for i in xrange(len(lines)-1):
+             lines[i] = lines[i].split()
+             if lines[i][0] == self.sent:
+                 print lines[i]
+                 f = open("data.txt", "w")
+                 f.write((lines[i][0] + ' ' + lines[i][1] + ' ' + self.can +' ' + self.leftupdate) + "\n")
+             else:
+                 print lines[i]
+                 f = open("data.txt", "w")
+                 f.write(lines[i][0] + ' ' + lines[i][1] + ' ' + lines[i][2] + ' ' + lines[i][3] + "\n")
+         f.close()
+         
+         self.main.destroy()
+         self.__init__()
 
 Main()

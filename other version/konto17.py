@@ -29,7 +29,6 @@ def date():
     year = datetime.date.today().strftime("%Y")
     date_now = "%s %s %s" % (day, month, year)
     return date_now
-f = open('data.txt', 'a+')
 
 class Main():
      def __init__(self):
@@ -45,10 +44,13 @@ class Main():
           #--Button-Image--#
           bt_img = PhotoImage(file= 'button01.gif')
           bt_img2 = PhotoImage(file= 'button02.gif')
+          bt_img7 = PhotoImage(file= 'bt_reset.gif')
 
           Button(self.main, image = bt_img, bg = '#29a3a2', relief= 'flat', command = self.new).place(x=100,y=200)
           Button(self.main, image = bt_img2, bg = '#29a3a2', relief= 'flat', command = self.old).place(x=280,y=200)
+          Button(self.main, image = bt_img7, bg = '#29a3a2', relief= 'flat', command = self.reset_all).place(x=190, y=300)
           self.main.mainloop()
+          
      def new(self):
           self.main.destroy()
           self.main = Tk()
@@ -60,23 +62,53 @@ class Main():
 
           #--Button-Image--#
           bt_img3 = PhotoImage(file= 'go_bt.gif')
+          bt_img6 = PhotoImage(file= 'back.gif')
 
           self.main.title("Enter Name")
           self.main.resizable(width=FALSE, height=FALSE)
           self.x = Entry(self.main)
           self.x.place(x=180, y=150)
           Button(self.main, image = bt_img3, bg = '#29a3a2', relief= 'flat', command = self.writename).place(x=215, y=200)
+          Button(self.main, image = bt_img6, bg = '#29a3a2', relief= 'flat', command = self.ready__init__).place(x=360, y=300)
           self.main.mainloop()
+          
      def old(self):
          self.main.destroy()
          self.run_old()
+         
      def writename(self):
-          f.write(str(self.x.get())+' ')
+          self.name_1 = str(self.x.get())
+          f = open('data.txt', 'a+')
+          f.write( self.name_1 +' ')
           self.lis_name.append(str(self.x.get()))
+          f.close()
           self.main.destroy()
-          self.slary()
+          self.slary2()
 
-     def slary(self):
+     def ready__init__(self):
+         self.main.destroy()
+         self.__init__()
+
+     def reset(self):
+         f = open("data.txt", "r")
+         lines = f.read().split('\n')
+         f.close()
+         f = open('data.txt', 'w').close()
+         f = open("data.txt", "a+")
+         for i in xrange(len(lines)-1):
+             lines[i] = lines[i].split()
+             print lines
+             if lines[i][0] != self.name_1:
+                 f.write(lines[i][0] + ' ' + lines[i][1] + ' ' + lines[i][2] + ' ' + lines[i][3] + "\n")
+         f.close()
+         self.new()
+         
+     def reset_all(self):
+         f = open('data.txt', 'w').close()
+         self.main.destroy()
+         self.__init__()
+         
+     def slary2(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
           self.main.title("Salary")
@@ -87,19 +119,23 @@ class Main():
 
           #--Button-Image--#
           bt_img3 = PhotoImage(file= 'go_bt.gif')
+          bt_img6 = PhotoImage(file= 'back.gif')
           
           self.main.resizable(width=FALSE, height=FALSE)
           self.y = Entry(self.main)
           self.y.place(x=180, y=160)
           Button(self.main, image = bt_img3, bg = '#29a3a2', relief= 'flat', command = self.getsave).place(x=215, y=200)
+          Button(self.main, image = bt_img6, bg = '#29a3a2', relief= 'flat', command = self.reset).place(x=360, y=300)
           self.main.mainloop()
           
      def getsave(self):
+          f = open('data.txt', 'a+')
           self.slary = float(self.y.get())
+          f.close()
           self.main.destroy()
-          self.save()
+          self.savel()
           
-     def save(self):
+     def savel(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
           
@@ -109,17 +145,22 @@ class Main():
 
           #--Button-Image--#
           bt_img3 = PhotoImage(file= 'go_bt.gif')
+          bt_img6 = PhotoImage(file= 'back.gif')
           
           self.main.title("Save")
           self.main.resizable(width=FALSE, height=FALSE)
           self.z = Entry(self.main)
           self.z.place(x=180, y=150)
           Button(self.main, image = bt_img3, bg = '#29a3a2', relief= 'flat', command = self.proceed).place(x=215, y=200)
+          Button(self.main, image = bt_img6, bg = '#29a3a2', relief= 'flat', command = self.reset).place(x=360, y=300)
           self.main.mainloop()
+          
 
      def proceed(self):
+          f = open('data.txt', 'a+')
           self.value = float(self.z.get())
           f.write(str(self.z.get())+' ')
+          f.close()
           self.main.destroy()
           self.run_resultuse()
           
@@ -131,17 +172,20 @@ class Main():
           #--Background--#
           photo = PhotoImage(file= 'bg6.gif')
           Label(self.main, image = photo).pack()
-          Label(self.main, text = self.result, font=("Helvetica", 30)).place(x=180, y=150)
+          Label(self.main, text = self.result, bg = '#29a3a2', fg = 'white', font=("Helvetica", 30)).place(x=180, y=150)
           
           #--Button-Image--#
           bt_img4 = PhotoImage(file= 'button03.gif')
+          bt_img6 = PhotoImage(file= 'back.gif')
           
           self.main.title("You need to use")
           self.main.resizable(width=FALSE, height=FALSE)
           Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.getold).place(x=140, y=200)
+          Button(self.main, image = bt_img6, bg = '#29a3a2', relief= 'flat', command = self.reset).place(x=360, y=300)
           self.main.mainloop()
           
      def getold(self):
+          f = open('data.txt', 'a+')
           f.write(str(self.result)+' ')
           f.write(str(int(self.slary - self.value)) + "\n")
           f.close()
@@ -186,6 +230,7 @@ class Main():
                  self.save = lines[i][1]
                  self.draft = lines[i][2]
                  self.left = lines[i][3]
+
          f.close()
          self.main.destroy()
          self.run_last()
@@ -204,11 +249,12 @@ class Main():
          bt_img4 = PhotoImage(file= 'go_bt.gif')
           
          self.t = Entry(self.main)
-         self.t.place(x=310, y=310)
+         self.t.place(x=295, y=295)
          Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.get_use).place(x=420, y=340)
-         Label(self.main, text =  str(remove()), font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=100)
-         Label(self.main, text =  str(self.save) , font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=160)
-         Label(self.main, text =  str(self.draft) ,font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=230)
+         Label(self.main, text =  str(remove()), font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=60)
+         Label(self.main, text =  str(self.left) , font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=120)
+         Label(self.main, text =  str(self.save) , font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=170)
+         Label(self.main, text =  str(self.draft) ,font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=220)
          self.main.mainloop()
          
      def get_use(self):
@@ -228,12 +274,9 @@ class Main():
 
          #--Button-Image--#
          bt_img5 = PhotoImage(file= 'bt_end.gif')
-
-         self.can = '%.2f' % ((float(self.left) - float(self.got))/(remove() - 1))
+         
          self.leftupdate = '%.2f' % (float(self.left) - float(self.got))
-         print self.left
-         print self.got
-         print self.leftupdate
+         self.can = '%.2f' % ((float(self.left) - float(self.got))/(remove() - 1))
          Button(self.main, image = bt_img5, bg = '#29a3a2', relief= 'flat', command = self.get__init__).place(x=390, y=340)
          Label(self.main, text = str(self.can), font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=190, y=170)
 
@@ -241,13 +284,19 @@ class Main():
      def get__init__(self):
          f = open("data.txt", "r")
          lines = f.read().split('\n')
+         f.close()
+         f = open('data.txt', 'w').close()
+         f = open("data.txt", "a+")
          for i in xrange(len(lines)-1):
              lines[i] = lines[i].split()
-             if lines[i][0] == self.sent:
-                 f = open("data.txt", "w")
-                 f.write((lines[i][0] + ' ' + lines[i][1] + ' ' + self.can +' ' + self.leftupdate) + "\n")
+             print lines
+             if lines[i][0] != self.sent:
+                 print "unchange"
+                 f.write(lines[i][0] + ' ' + lines[i][1] + ' ' + lines[i][2] + ' ' + lines[i][3] + "\n")
              else:
-                 f.write(lines[i] + "\n")
+                 print "change"
+                 f.write((lines[i][0] + ' ' + lines[i][1] + ' ' + self.can +' ' + self.leftupdate) + "\n")
+         f.close()
          
          self.main.destroy()
          self.__init__()
