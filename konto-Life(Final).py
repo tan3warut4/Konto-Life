@@ -34,7 +34,7 @@ class Main():
      def __init__(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
-          self.main.title("Main")
+          self.main.title("Konto Account Manager")
           self.main.resizable(width=FALSE, height=FALSE)
           self.lis_name = []
           #--Background--#
@@ -64,7 +64,7 @@ class Main():
           bt_img3 = PhotoImage(file= 'go_bt.gif')
           bt_img6 = PhotoImage(file= 'back.gif')
 
-          self.main.title("Enter Name")
+          self.main.title("Konto Account Manager")
           self.main.resizable(width=FALSE, height=FALSE)
           self.x = Entry(self.main, justify='center')
           self.x.place(x=180, y=150)
@@ -111,7 +111,7 @@ class Main():
      def slary2(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
-          self.main.title("Salary")
+          self.main.title("Konto Account Manager")
           
           #--Background--#
           photo = PhotoImage(file= 'bg7.gif')
@@ -147,7 +147,7 @@ class Main():
           bt_img3 = PhotoImage(file= 'go_bt.gif')
           bt_img6 = PhotoImage(file= 'back.gif')
           
-          self.main.title("Save")
+          self.main.title("Konto Account Manager")
           self.main.resizable(width=FALSE, height=FALSE)
           self.z = Entry(self.main, justify='center')
           self.z.place(x=180, y=150)
@@ -178,7 +178,7 @@ class Main():
           bt_img4 = PhotoImage(file= 'button03.gif')
           bt_img6 = PhotoImage(file= 'back.gif')
           
-          self.main.title("You need to use")
+          self.main.title("Konto Account Manager")
           self.main.resizable(width=FALSE, height=FALSE)
           Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.getold).place(x=140, y=200)
           Button(self.main, image = bt_img6, bg = '#29a3a2', relief= 'flat', command = self.reset).place(x=360, y=300)
@@ -195,7 +195,7 @@ class Main():
      def run_old(self):
           self.main = Tk()
           self.main.geometry("500x400+500+100")
-          self.main.title("Select Name")
+          self.main.title("Konto Account Manager")
           self.main.resizable(width=FALSE, height=FALSE)
           self.variable = StringVar(self.main)
           self.variable.set("NAME")
@@ -238,7 +238,7 @@ class Main():
      def run_last(self):
          self.main = Tk()
          self.main.geometry("500x400+500+100")
-         self.main.title("Last")
+         self.main.title("Konto Account Manager")
          self.main.resizable(width=FALSE, height=FALSE)
 
          #--Background--#
@@ -265,7 +265,7 @@ class Main():
      def use(self):
          self.main = Tk()
          self.main.geometry("500x400+500+100")
-         self.main.title("Last")
+         self.main.title("Konto Account Manager")
          self.main.resizable(width=FALSE, height=FALSE)
 
          #--Background--#
