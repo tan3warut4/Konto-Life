@@ -191,13 +191,35 @@ class Main():
          self.main.geometry("500x400+500+100")
          self.main.title("Last")
          self.main.resizable(width=FALSE, height=FALSE)
+
+         #--Background--#
+         photo = PhotoImage(file= 'bg_account.gif')
+         Label(self.main, image = photo).pack()
+         
+         #--Button-Image--#
+         bt_img4 = PhotoImage(file= 'go_bt.gif')
+          
          self.t = Entry(self.main)
-         self.t.place(x=160, y=260)
-        
-         Label(self.main, text = 'Day left  :' + str(remove()), font=("Helvetica", 30)).place(x=50, y=90)
-         Label(self.main, text = 'Money save  :' + str(self.save) , font=("Helvetica", 30)).place(x=50, y=140)
-         Label(self.main, text = 'Draft  :' + str(self.draft) ,font=("Helvetica", 30)).place(x=50, y=200)
-         Label(self.main, text = 'use : ', font=("Helvetica", 30)).place(x=50, y=250)
+         self.t.place(x=310, y=310)
+         Button(self.main, image = bt_img4, bg = '#29a3a2', relief= 'flat', command = self.get_use).place(x=420, y=340)
+         Label(self.main, text =  str(remove()), font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=100)
+         Label(self.main, text =  str(self.save) , font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=160)
+         Label(self.main, text =  str(self.draft) ,font=("Helvetica", 30), bg = '#29a3a2', fg = 'white').place(x=300, y=230)
+         self.main.mainloop()
+     def get_use(self):
+         self.main.destroy()
+         self.use()
+
+     def use(self):
+         self.main = Tk()
+         self.main.geometry("500x400+500+100")
+         self.main.title("Last")
+         self.main.resizable(width=FALSE, height=FALSE)
+
+         #--Background--#
+         photo = PhotoImage(file= 'bg_next.gif')
+         Label(self.main, image = photo).pack()
+
          self.main.mainloop()
         
 Main()
